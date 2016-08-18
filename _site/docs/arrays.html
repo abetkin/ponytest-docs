@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset='utf-8'>
+    <title>Flow | What is ponytest</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" />
+    <link type="text/css" rel="stylesheet" href="/assets/default.css">
+    <link type="text/css" rel="stylesheet" href="/assets/syntax.css">
+    <link rel='shortcut icon' href='/static/favicon.png'>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="What is ponytest" />
+    <meta property="og:site_name" content="flowtype">
+    <meta property='og:description' content='Flow is a static type checker for
+    JavaScript.'>
+    <meta property='og:image' content='http://flowtype.org/static/flow-og-image.png'>
+    <meta property='og:url' content="http://flowtype.org/docs/arrays.html">
+    
+    <meta property='og:type' content='website'>
+    
+    <script type="text/javascript" src="/assets/prelude.js"></script>
+    <link rel="alternate" type="application/rss+xml" title="Flow" href="http://flowtype.org/blog/feed.xml">
+</head>
+<body class="">
+
+<header class='topbar'><nav class='width'>
+<a href='/'>
+  <img src="/assets/flow-logo.png" alt="Flow logo" class="logo" />
+</a>
+    <ul>
+      <li><a href="/docs/getting-started.html#_"
+           class="active" >
+          Docs
+      </a></li>
+      <li><a href="/try/"
+          >
+          Try
+      </a></li>
+      <li><a href="/support.html"
+          >
+          Support
+      </a></li>
+      <li><a href="/blog"
+          >
+          Blog
+      </a></li>
+      <li>
+        <input id="algolia-doc-search" type="text" placeholder="Search docs..." />
+      </li>
+    </ul>
+    <ul class="external">
+      <li><a href="http://github.com/facebook/flow">GitHub</a>
+    </ul>
+</nav></header>
+
+
+<section class='content'><div class='width'>
+
+<nav class='toc'>
+  
+    <section>
+      <h3>Quick Start</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/getting-started.html#_">
+              Getting started with Flow
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/five-simple-examples.html#_">
+              Five simple examples
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>User Guide</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/new-project.html#_">
+              Starting a new Flow project
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/existing.html#_">
+              Running Flow on existing code
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/type-annotations.html#_">
+              Adding Type Annotations
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/third-party.html#_">
+              Checking third-party code
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/running.html#_">
+              Running Flow code
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/troubleshooting.html#_">
+              Troubleshooting
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/cli.html#_">
+              Using the CLI
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/advanced-configuration.html#_">
+              Advanced Configuration
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Language Reference</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/quick-reference.html#_">
+              Quick Reference
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/builtins.html#_">
+              Built-in Types
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/syntax.html#_">
+              Syntax
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/arrays.html#_" class="active">
+              Arrays and Tuples
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/classes.html#_">
+              Classes
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/objects.html#_">
+              Objects
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/functions.html#_">
+              Functions
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/nullable-types.html#_">
+              Maybe Types
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/destructuring.html#_">
+              Destructuring
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/type-aliases.html#_">
+              Type Aliases
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/union-intersection-types.html#_">
+              Union and Intersection Types
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/typeof.html#_">
+              Typeof types
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/dynamic-type-tests.html#_">
+              Dynamic Type Tests
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/disjoint-unions.html#_">
+              Disjoint Unions
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/modules.html#_">
+              Modules
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/declarations.html#_">
+              Declarations
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/react.html#_">
+              React
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+</nav>
+
+
+<article class='withtoc'>
+    <h1>What is ponytest</h1>
+    <p></p>
+
+    <p><code class="highlighter-rouge">ponytest</code> is a package wrapping <a href="https://docs.python.org/3.4/library/unittest.html">unittest</a>, fully compatible with it. It’s features:</p>
+
+<h2>You can define setup/teardown fixtures with context managers.<a id="you-can-define-setupteardown-fixtures-with-context-managers" class="hashref"></a><a href="#you-can-define-setupteardown-fixtures-with-context-managers" class="hash">#</a></h2>
+
+<p>It feels like a better choice then mixins to the testcase class when the set of required fixtures should be evaluated dynamically.</p>
+
+<p>Usually a context manager describes a <strong>resource</strong> that has to be acquired and cleaned up. Later on, the word “resource” will sometimes be used as a synonym to setup + teardown fixture.</p>
+
+<h2>A test resource can have multiple “providers”.<a id="a-test-resource-can-have-multiple-providers" class="hashref"></a><a href="#a-test-resource-can-have-multiple-providers" class="hash">#</a></h2>
+
+<p>In that case, it is possible to run tests with all combination of resource providers.</p>
+
+<p>Imagine a case when a resource is fetched from a web API. The resource providers may be: 1) the actual API is available 2) user is offline 3) special cases that handled with mocks</p>
+
+<h2>You can use command line switches specify the fixtures and their providers.<a id="you-can-use-command-line-switches-specify-the-fixtures-and-their-providers" class="hashref"></a><a href="#you-can-use-command-line-switches-specify-the-fixtures-and-their-providers" class="hash">#</a></h2>
+
+<p>With that you can enable/disable a fixture, or chose a provider for a resource, from the command line.</p>
+
+<h1>Motivation<a id="motivation" class="hashref"></a><a href="#motivation" class="hash">#</a></h1>
+
+<p>Testing ORM</p>
+
+<h1>Example<a id="example" class="hashref"></a><a href="#example" class="hash">#</a></h1>
+
+<p>Let’s see how a test of some customer service may look like. Say a test expects a user with some customer plan, and, possibly, some online payment service selected. In the example below, the service is only available for the premium customer plan.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">ponytest</span> <span class="kn">import</span> <span class="n">provider</span>
+
+<span class="nd">@provider</span><span class="p">(</span><span class="n">fixture</span><span class="o">=</span><span class="s">'user'</span><span class="p">)</span>
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="n">test</span><span class="p">):</span>
+  <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'John'</span><span class="p">)</span>
+  <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+  <span class="n">test</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span>
+  <span class="k">yield</span>
+
+<span class="nd">@provider</span><span class="p">(</span><span class="s">'premium'</span><span class="p">,</span> <span class="n">fixture</span><span class="o">=</span><span class="s">'user_plan'</span><span class="p">)</span>
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">premium_plan</span><span class="p">():</span>
+  <span class="n">user</span><span class="o">.</span><span class="n">set_plan</span><span class="p">(</span><span class="n">UserPlan</span><span class="p">(</span><span class="s">'premium'</span><span class="p">))</span>
+  <span class="k">yield</span>
+
+<span class="nd">@provider</span><span class="p">(</span><span class="s">'basic'</span><span class="p">,</span> <span class="n">fixture</span><span class="o">=</span><span class="s">'user_plan'</span><span class="p">)</span>
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">basic_plan</span><span class="p">():</span>
+  <span class="n">user</span><span class="o">.</span><span class="n">set_plan</span><span class="p">(</span><span class="n">UserPlan</span><span class="p">(</span><span class="s">'premium'</span><span class="p">))</span>
+  <span class="k">yield</span>
+
+<span class="nd">@provider</span><span class="p">(</span><span class="s">'paypal'</span><span class="p">,</span> <span class="n">fixture</span><span class="o">=</span><span class="s">'payment_service'</span><span class="p">)</span>
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">paypal</span><span class="p">():</span>
+  <span class="n">user</span><span class="o">.</span><span class="n">set_payment_service</span><span class="p">(</span><span class="n">PayPal</span><span class="p">())</span>
+  <span class="k">yield</span>
+
+<span class="nd">@provider</span><span class="p">(</span><span class="s">'google_wallet'</span><span class="p">,</span> <span class="n">fixture</span><span class="o">=</span><span class="s">'payment_service'</span><span class="p">)</span>
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">google_wallet</span><span class="p">():</span>
+  <span class="n">user</span><span class="o">.</span><span class="n">set_payment_service</span><span class="p">(</span><span class="n">GoogleWallet</span><span class="p">())</span>
+  <span class="k">yield</span>
+
+
+<span class="k">class</span> <span class="nc">Test</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+  <span class="n">pony_fixtures</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'test'</span><span class="p">:</span> <span class="p">[</span><span class="s">'user'</span><span class="p">,</span> <span class="s">'user_plan'</span><span class="p">,</span> <span class="s">'payment_service'</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="k">def</span> <span class="nf">test_service_1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">ExitStack</span><span class="p">()</span> <span class="k">as</span> <span class="n">stack</span><span class="p">:</span>
+      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">plan</span><span class="o">.</span><span class="n">alias</span> <span class="o">==</span> <span class="s">'basic'</span><span class="p">:</span>
+        <span class="n">stack</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span>
+          <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="nb">Exception</span><span class="p">,</span> <span class="s">'unavailable for given customer plan'</span><span class="p">)</span>
+        <span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">order_service_1</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p>As you can see, all fixture providers have been passed <code class="highlighter-rouge">fixture</code> argument, which is a string key. Than, that fixture keys were listed in <code class="highlighter-rouge">pony_fixtures</code> dictionary. This is how we define it:</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code>  <span class="n">pony_fixtures</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'test'</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>  <span class="c"># test-level fixtures</span>
+    <span class="s">'class'</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span> <span class="c"># class-level fixtures</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Besides specifying fixtures in the testcase, fixtures can be registered globally. In the example above, it could be the creation of new database for the test class and initializing it.</p>
+
+<p>Let’s run the example:</p>
+
+<pre><code class="language-command-line">$ python -m ponytest tests.Test
+</code></pre>
+
+<p>We’ll have <strong>4 tests</strong> executed, for each of 2 user plans and 2 payment services.</p>
+
+<p>We can run all tests for a given user plan with</p>
+
+<pre><code class="language-command-line">$ python -m ponytest tests.Test -- --user-plan basic
+</code></pre>
+
+<p>Also, there is globally registered fixture <code class="highlighter-rouge">ipdb</code>, that comes with <em>ponytest</em>, so you can drop into debugger on failures:</p>
+
+<pre><code class="language-command-line">$ python -m ponytest tests.Test -- --ipdb
+</code></pre>
+
+
+    <p class="docs-prevnext">
+      
+        <a href="/docs/syntax.html#_">&larr; Prev</a>
+      
+      
+        <a class="right" href="/docs/classes.html#_">Next &rarr;</a>
+      
+    </p>
+
+    <p class="edit-page-block">
+      You can
+      <a href="https://github.com/facebook/flow/tree/master/website/docs/01-arrays.md" target="_blank">
+        edit this page on GitHub
+      </a>
+      and send us a pull request!
+    </p>
+
+    <a id="_"></a>
+</article>
+
+</div></section>
+
+<footer><div class='width'>
+    &copy; Copyright 2014 - 2016, Facebook Inc.
+</div></footer>
+
+<script>require(['default']);</script>
+</body>
+</html>
+

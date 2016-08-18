@@ -1,0 +1,60 @@
+- title: Quick Start
+  items:
+  - id: getting-started
+    title: Getting started with Flow
+  - id: five-simple-examples
+    title: Five simple examples
+- title: User Guide
+  items:
+  - id: new-project
+    title: Starting a new Flow project
+  - id: existing
+    title: Running Flow on existing code
+  - id: type-annotations
+    title: Adding Type Annotations
+  - id: third-party
+    title: Checking third-party code
+  - id: running
+    title: Running Flow code
+  - id: troubleshooting
+    title: Troubleshooting
+  - id: cli
+    title: Using the CLI
+  - id: advanced-configuration
+    title: Advanced Configuration
+- title: Language Reference
+  items:
+  - id: quick-reference
+    title: Quick Reference
+  - id: builtins
+    title: Built-in Types
+  - id: syntax
+    title: Syntax
+  - id: arrays
+    title: Arrays and Tuples
+  - id: classes
+    title: Classes
+  - id: objects
+    title: Objects
+  - id: functions
+    title: Functions
+  - id: nullable-types
+    title: Maybe Types
+  - id: destructuring
+    title: Destructuring
+  - id: type-aliases
+    title: Type Aliases
+  - id: union-intersection-types
+    title: Union and Intersection Types
+  - id: typeof
+    title: Typeof types
+  - id: dynamic-type-tests
+    title: Dynamic Type Tests
+  - id: disjoint-unions
+    title: Disjoint Unions
+  - id: modules
+    title: Modules
+  - id: declarations
+    title: Declarations
+  - id: react
+    title: React
