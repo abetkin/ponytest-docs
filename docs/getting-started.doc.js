@@ -2,134 +2,70 @@
 /*
 ---
 id: getting-started
-title: Getting started with Flow
+title: Example
 permalink: /docs/getting-started.html
-next: five-simple-examples.html
+next: new-project.html
 ---
 */
 
 /*
-  To demonstrate how to add Flow to a project, let's set up an example npm project.
-
-  First, we'll make an npm package for our example project called "get_started":
-
-  ```bash
-  $> mkdir -p get_started
-  $> cd get_started
-  $> echo '{"name": "get_started", "scripts": {"flow": "flow; test $? -eq 0 -o $? -eq 2"}}' > package.json
-  ```
-
-  Next we'll add Flow to our project:
-
-  ```bash
-  $> touch .flowconfig
-  $> npm install --save-dev flow-bin
-  ```
-
-  And now we can start writing some code!
-
-  **index.js**
-*/
-
-// @flow
-
-// $DocIssue
-var str = 'hello world!';
-console.log(str);
-
-/*
-  Note that we've added `// @flow` to the top of our file. This indicates to Flow
-  that we want this file to be checked. **If we don't add this flag to the top of
-  the file, Flow will assume that the file isn't ready to be checked yet and
-  Flow will not attempt to type check the file.**
-
-  Ok, now let's run Flow and see what it has to say about the code we just wrote:
-
-  ```bash
-  $> npm run-script flow
-
-  > test@ flow /get_started
-  > flow
-
-  No errors!
-  ```
-
-  Woohoo! No errors! Ok, now let's add a trivial type error just to see what
-  happens:
-
-  **index.js**
-*/
-
-// $NoCliOutput
-// @flow
-
-// $ExpectError
-var str: number = 'hello world!';
-console.log(str);
-
-/*
-  ```bash
-  $> npm run-script flow
-
-  > test@ flow /get_started
-  > flow 2> /dev/null
-
-  index.js:3
-    3: let str: number = 'hello world!';
-                         ^^^^^^^^^^^^^^ string. This type is incompatible with
-    3: let str: number = 'hello world!';
-                ^^^^^^ number
 
 
-  Found 1 error
-  ```
 
-  Cool -- Flow noticed that we're assigning a string to a number and gave an
-  error.
+Imagine we are testing a customer service. Say, a test expects a user with some customer plan,
+and, possibly, some online payment service selected.
+In the example below, the service is only available for the premium customer plan.
 
-  Before we fix this type error, let's add Babel to our project so we can
-  try running our code:
+```python
+from ponytest import provider
 
-  ```bash
-  $> npm install -g babel-cli
-  $> npm install --save-dev babel-plugin-transform-flow-strip-types
-  $> echo '{"plugins": ["transform-flow-strip-types"]}' > .babelrc
-  ```
+@provider(fixture='user')
+@contextmanager
+def get_user(test):
+  user = User(name='John')
+  user.save()
+  test.user = user
+  yield
 
-  Now we can try running our code *in spite* of the type error and see what
-  happens:
+@provider('premium', fixture='user_plan')
+@contextmanager
+def premium_plan():
+  user.set_plan(UserPlan('premium'))
+  yield
 
-  ```bash
-  $> babel-node index.js
-  hello world!
-  ```
+@provider('basic', fixture='user_plan')
+@contextmanager
+def basic_plan():
+  user.set_plan(UserPlan('premium'))
+  yield
 
-  It works! As you can see Flow does not prevent you from running the code you
-  have written even if there are type errors. It is considered best practice to
-  never publish your project when it has type errors, but often at development
-  time it's useful to try running code even before it fully typechecks (usually
-  for debugging or ad-hoc testing). This is one of the benefits of gradual typing
-  and Flow is designed to support this and stay out of your way as much as you
-  need it to during development.
+@provider('paypal', fixture='payment_service')
+@contextmanager
+def paypal():
+  user.set_payment_service(PayPal())
+  yield
 
-  Note that we ran our code using `babel-node` rather than just vanilla `node` to
-  run index.js. [`babel-node`](https://babeljs.io/docs/usage/cli/#babel-node)
-  comes with `babel-cli` and is just a thin wrapper around vanilla `node` that
-  first intercepts and transpiles JS code before running it with `node`.
+@provider('google_wallet', fixture='payment_service')
+@contextmanager
+def google_wallet():
+  user.set_payment_service(GoogleWallet())
+  yield
 
-  Check out the [Running Flow Code](/docs/running.html) section for more details
-  on how we recommend compiling and publishing Flow code to npm and into
-  production.
 
-  ### Next steps
+class Test(unittest.TestCase):
+  pony_fixtures = {
+    'test': ['user', 'user_plan', 'payment_service']
+  }
 
-  Now that we know how to set Flow up, let's take a quick look at
-  [a few examples](/docs/five-simple-examples.html) that are
-  [included in the Flow repo](https://github.com/facebook/flow/tree/master/examples):
+  def test_service_1(self):
+    with ExitStack() as stack:
+      if self.user.plan.alias == 'basic':
+        stack.enter_context(
+          self.assertRaises(Exception, 'unavailable for given customer plan')
+        )
+      self.order_service_1()
 
-  1. [Hello Flow!](/docs/five-simple-examples.html#1-hello-flow)
-  2. [Adding type annotations](/docs/five-simple-examples.html#2-adding-type-annotations)
-  3. [Nullable types](/docs/five-simple-examples.html#3-nullable-types)
-  4. [Arrays](/docs/five-simple-examples.html#4-arrays)
-  5. [Dynamic code](/docs/five-simple-examples.html#5-dynamic-code)
+
+```
+
 */

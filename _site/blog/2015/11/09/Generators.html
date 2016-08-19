@@ -4,7 +4,7 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset='utf-8'>
-    <title>Flow | Typing Generators with Flow</title>
+    <title>ponytest | Typing Generators with Flow</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" />
     <link type="text/css" rel="stylesheet" href="/assets/default.css">
@@ -19,7 +19,7 @@
     <meta property='og:url' content="http://flowtype.org/blog/2015/11/09/Generators.html">
     
     <meta property='og:type' content='article'>
-    <meta property='article:author' content="https://www.facebook.com/samuel.w.goldman">
+    <meta property='article:author' content="">
     
     <script type="text/javascript" src="/assets/prelude.js"></script>
     <link rel="alternate" type="application/rss+xml" title="Flow" href="http://flowtype.org/blog/feed.xml">
@@ -27,34 +27,20 @@
 <body class="">
 
 <header class='topbar'><nav class='width'>
-<a href='/'>
-  <img src="/assets/flow-logo.png" alt="Flow logo" class="logo" />
-</a>
     <ul>
+        <li><a href="/" class="logo-color">
+          ponytest
+      </a></li>
       <li><a href="/docs/getting-started.html#_"
           >
           Docs
-      </a></li>
-      <li><a href="/try/"
-          >
-          Try
-      </a></li>
-      <li><a href="/support.html"
-          >
-          Support
-      </a></li>
-      <li><a href="/blog"
-          
-            class="active"
-          >
-          Blog
       </a></li>
       <li>
         <input id="algolia-doc-search" type="text" placeholder="Search docs..." />
       </li>
     </ul>
     <ul class="external">
-      <li><a href="http://github.com/facebook/flow">GitHub</a>
+      <li><a href="http://github.com/abetkin/ponytest">GitHub</a>
     </ul>
 </nav></header>
 
@@ -227,7 +213,7 @@
 
 <article class='withtoc'>
     <h1>Typing Generators with Flow</h1>
-    <p class="meta">November  9, 2015 by Sam Goldman</p>
+    <p class="meta">November  9, 2015 by </p>
 
     <p>Flow 0.14.0 included support for generator functions. Generator functions provide a unique ability to JavaScript programs: the abilty to suspend and resume execution. This kind of control paves the way for async/await, an <a href="https://github.com/tc39/ecmascript-asyncawait">upcoming feature</a> already supported by Flow.</p>
 
@@ -515,7 +501,7 @@ const ret: { a: number, b: string } = gen.next("").value; // error
 </div></section>
 
 <footer><div class='width'>
-    &copy; Copyright 2014 - 2016, Facebook Inc.
+    Built by <a href="https://ponyorm.com/">Pony ORM</a>
 </div></footer>
 
 <script>require(['default']);</script>

@@ -2,7 +2,7 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset='utf-8'>
-    <title>Flow | A static type checker for JavaScript</title>
+    <title>ponytest | A static type checker for JavaScript</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" />
     <link type="text/css" rel="stylesheet" href="/assets/default.css">
@@ -24,67 +24,56 @@
 <body class="home">
 
 <header class='topbar'><nav class='width'>
-<a href='/'>
-  <img src="/assets/flow-logo.png" alt="Flow logo" class="logo" />
-</a>
     <ul>
+        <li><a href="/" class="logo-color">
+          ponytest
+      </a></li>
       <li><a href="/docs/getting-started.html#_"
           >
           Docs
-      </a></li>
-      <li><a href="/try/"
-          >
-          Try
-      </a></li>
-      <li><a href="/support.html"
-          >
-          Support
-      </a></li>
-      <li><a href="/blog"
-          >
-          Blog
       </a></li>
       <li>
         <input id="algolia-doc-search" type="text" placeholder="Search docs..." />
       </li>
     </ul>
     <ul class="external">
-      <li><a href="http://github.com/facebook/flow">GitHub</a>
+      <li><a href="http://github.com/abetkin/ponytest">GitHub</a>
     </ul>
 </nav></header>
 
 
 
 <header class="main hero"><div class="width">
-  <div class="flow-header"></div>
+  <h1><i>ponytest</i></h1>
   <div>
-    <p>A static type checker for JavaScript</p>
+    <p>unittest is usable now</p>
   </div>
 </div></header>
 
 <section class="marketing-row three"><div class="width">
 <div class="col first">
 
-      <h2>Type Inference<a id="type-inference" class="hashref"></a><a href="#type-inference" class="hash">#</a></h2>
+      <h2>Fixtures via context managers<a id="fixtures-via-context-managers" class="hashref"></a><a href="#fixtures-via-context-managers" class="hash">#</a></h2>
 
-      <p>Flow uses type inference to find bugs even without type annotations. It
-precisely tracks the types of variables as they flow through your program.</p>
-
-    </div>
-<div class="col">
-
-      <h2>Idiomatic JS<a id="idiomatic-js" class="hashref"></a><a href="#idiomatic-js" class="hash">#</a></h2>
-
-      <p>Flow is designed for JavaScript programmers. It understands common JavaScript idioms and very dynamic
-code.</p>
+      <p>Ponytest recommends to define setup/teardown actions for a test using python context managers.
+While writing methods like <code class="highlighter-rouge">setUp</code> and <code class="highlighter-rouge">setUpClass</code> also works, the former allows you to structure fixtures into lists.</p>
 
     </div>
 <div class="col">
 
-      <h2>Realtime Feedback<a id="realtime-feedback" class="hashref"></a><a href="#realtime-feedback" class="hash">#</a></h2>
+      <h2>Parameterize tests with fixture providers<a id="parameterize-tests-with-fixture-providers" class="hashref"></a><a href="#parameterize-tests-with-fixture-providers" class="hash">#</a></h2>
 
-      <p>Flow incrementally rechecks your changes as you work, preserving the fast feedback cycle of developing
-plain JavaScript.</p>
+      <p>Allows tests to be parametrized in such a way, that the same tests to be executed in different contexts, i.e. with
+different setup/teardown fixtures.</p>
+
+    </div>
+<div class="col">
+
+      <h2>Command line integration<a id="command-line-integration" class="hashref"></a><a href="#command-line-integration" class="hash">#</a></h2>
+
+      <p>Every fixture can be toggled (or specified the providers list) from the command line. Btw, an example
+of that is
+<code class="highlighter-rouge">--ipdb</code> flag that toggles debugging on test failures.</p>
 
     </div>
 </div></section>
@@ -92,148 +81,134 @@ plain JavaScript.</p>
 <section class="content"><div class="width">
 <article>
 
-      <p>Flow can catch common bugs in JavaScript programs before they run, including:</p>
+      <p>Let’s see the use of context managers in ponytest. Let’s craft a simple logging fixture.</p>
 
-      <ul>
-        <li>silent type conversions,</li>
-        <li><code class="highlighter-rouge">null</code> dereferences,</li>
-        <li>and the dreaded <code class="highlighter-rouge">undefined is not a function</code>.</li>
-      </ul>
+      <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="kn">from</span> <span class="nn">ponytest</span> <span class="kn">import</span> <span class="n">provider</span><span class="p">,</span> <span class="n">pony_fixtures</span>
 
-      <div class="code-sample">
+<span class="nd">@provider</span><span class="p">(</span><span class="n">fixture</span><span class="o">=</span><span class="s">'log'</span><span class="p">,</span> <span class="n">enabled</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="n">test</span><span class="p">):</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">level</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+    <span class="k">yield</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
 
-<div class="language-javascript highlighter-flow">
-  <div class="highlight">
-    <table style="border-spacing: 0"><tbody>
-      <tr>
-        <td class="gutter gl" style="text-align: right">
-          <pre class="lineno">1
-2
-3
-4
-5</pre>
-        </td>
-        <td class="code"><pre><span class="comment line">// @flow</span>
-<span class="normal T_FUNCTION">function</span> <span class="normal T_IDENTIFIER">foo</span><span class="normal T_LPAREN">(</span><span class="normal T_IDENTIFIER">x</span><span class="normal T_RPAREN">)</span> <span class="normal T_LCURLY">{</span>
-  <span class="normal T_RETURN">return</span> <span class="error" data-error-id="E1" data-message-id="M1003"><span class="error" data-error-id="E1" data-message-id="M1001"><span class="normal T_IDENTIFIER">x</span></span> <span class="normal T_MULT">*</span> <span class="normal T_NUMBER">10</span></span><span class="normal T_SEMICOLON">;</span>
-<span class="normal T_RCURLY">}</span>
-<span class="normal T_IDENTIFIER">foo</span><span class="normal T_LPAREN">(</span><span class="normal T_STRING">&#39;Hello, world!&#39;</span><span class="normal T_RPAREN">)</span><span class="normal T_SEMICOLON">;</span></pre></td>
-      </tr>
-    </tbody></table>
-  </div>
-</div>
+<span class="n">pony_fixtures</span><span class="p">[</span><span class="s">'test'</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">'log'</span><span class="p">)</span>
+</code></pre>
+      </div>
 
+      <p>Fixture itself is a singleton (a class that inherits from <code class="highlighter-rouge">Fixture</code>, that was created automatically
+with <code class="highlighter-rouge">'log'</code> as its key). What we define with a context manager is a fixture provider.</p>
 
-<a class="show" href="#" onclick="this.parentNode.className = 'code-sample shown'; return false">show Flow output</a>
-<a class="hide" href="#" onclick="this.parentNode.className = 'code-sample'; return false">hide Flow output</a>
+      <p>Than we register fixture globally updating <code class="highlighter-rouge">pony_fixtures['test']</code>, which means test-scoped fixtures.
+So it will wrap every test.  If we placed it in <code class="highlighter-rouge">pony_fixtures['class']</code>, it would execute once for every
+testcase class.</p>
 
-<div class="language-bash highlighter-flow">
-  <pre class="highlight"><code>$&gt; flow</code></pre>
-</div>
-<div class="language-text cli-error highlighter-flow">
-  <pre class="highlight"><code>5: <strong>foo(&#39;Hello, world!&#39;)</strong>;
-   ^^^^^^^^^^^^^^^^^^^^ function call
-3:   return <strong>x</strong> * 10;
-            ^ string. This type is incompatible with
-3:   return <strong>x * 10</strong>;
-            ^^^^^^ number</code></pre>
-</div>
+      <p>We did not enable logging fixture provider by default, so it will be used only when it’s command line option
+will be passed, like this:</p>
 
+      <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>python -m ponytest tests.test_me -- --log
+</code></pre>
+      </div>
 
-</div>
+      <p><code class="highlighter-rouge">--</code> separates unittest arguments and ponytest options. Since <code class="highlighter-rouge">'log'</code> fixture is registered globally,
+we will have every test use it.</p>
 
-      <p>Flow also lets you <strong>gradually</strong> add type assertions to your code:</p>
-      <div class="code-sample">
+      <p>The next example demonstrates the use of providers.</p>
 
-<div class="language-javascript highlighter-flow">
-  <div class="highlight">
-    <table style="border-spacing: 0"><tbody>
-      <tr>
-        <td class="gutter gl" style="text-align: right">
-          <pre class="lineno">1
-2
-3
-4
-5</pre>
-        </td>
-        <td class="code"><pre><span class="comment line">// @flow</span>
-<span class="normal T_FUNCTION">function</span> <span class="normal T_IDENTIFIER">bar</span><span class="normal T_LPAREN">(</span><span class="normal T_IDENTIFIER">x</span><span class="normal T_RPAREN">)</span><span class="type T_COLON">:</span> <span class="error" data-error-id="E2" data-message-id="M2003"><span class="type T_STRING_TYPE">string</span></span> <span class="normal T_LCURLY">{</span>
-  <span class="normal T_RETURN">return</span> <span class="error" data-error-id="E2" data-message-id="M2001"><span class="normal T_IDENTIFIER">x</span><span class="normal T_PERIOD">.</span><span class="normal T_IDENTIFIER">length</span></span><span class="normal T_SEMICOLON">;</span>
-<span class="normal T_RCURLY">}</span>
-<span class="normal T_IDENTIFIER">bar</span><span class="normal T_LPAREN">(</span><span class="normal T_STRING">&#39;Hello, world!&#39;</span><span class="normal T_RPAREN">)</span><span class="normal T_SEMICOLON">;</span></pre></td>
-      </tr>
-    </tbody></table>
-  </div>
-</div>
+      <p>Suppose we ship 2 implementation of calculators, one of which will be used, depending on the user config.
+we want to check that both implementation pass a set of tests.</p>
+
+      <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ReduceAddCalculator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">expr</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'+'</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">add</span><span class="p">,</span> <span class="n">items</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">PythonEvalCalculator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+</code></pre>
+      </div>
+
+      <p>As you probably guessed, the first calculator will work only for addition. Let’s write the providers.</p>
+
+      <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
+<span class="kn">import</span> <span class="nn">operator</span> <span class="kn">as</span> <span class="nn">op</span>
+
+<span class="nd">@provider</span><span class="p">(</span><span class="s">'reduce add'</span><span class="p">,</span> <span class="n">fixture</span><span class="o">=</span><span class="s">'calculator'</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ReduceAdd</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test</span><span class="p">):</span>
+        <span class="n">test</span><span class="o">.</span><span class="n">calculator</span> <span class="o">=</span> <span class="n">ReduceAddCalculator</span><span class="p">()</span>
+
+    <span class="n">__enter__</span> <span class="o">=</span> <span class="n">__exit__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="bp">None</span>
 
 
-<a class="show" href="#" onclick="this.parentNode.className = 'code-sample shown'; return false">show Flow output</a>
-<a class="hide" href="#" onclick="this.parentNode.className = 'code-sample'; return false">hide Flow output</a>
-
-<div class="language-bash highlighter-flow">
-  <pre class="highlight"><code>$&gt; flow</code></pre>
-</div>
-<div class="language-text cli-error highlighter-flow">
-  <pre class="highlight"><code>3:   return <strong>x.length</strong>;
-            ^^^^^^^^ number. This type is incompatible with the expected return type of
-2: function bar(x): <strong>string</strong> {
-                    ^^^^^^ string</code></pre>
-</div>
+<span class="nd">@provider</span><span class="p">(</span><span class="s">'python exec'</span><span class="p">,</span> <span class="n">fixture</span><span class="o">=</span><span class="s">'calculator'</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">PythonExec</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test</span><span class="p">):</span>
+        <span class="n">test</span><span class="o">.</span><span class="n">calculator</span> <span class="o">=</span> <span class="n">PythonEvalCalculator</span><span class="p">()</span>
+    
+    <span class="n">__enter__</span> <span class="o">=</span> <span class="n">__exit__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="bp">None</span>
 
 
-</div>
+<span class="k">class</span> <span class="nc">TestCalculator</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="n">include_fixtures</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">'test'</span><span class="p">:</span> <span class="p">[</span><span class="s">'calculator'</span><span class="p">]</span>
+    <span class="p">}</span>
 
-      <p>JavaScript code with Flow annotations <a href="/docs/running.html">easily transforms</a>
-down to regular JavaScript, so it runs anywhere.</p>
+    <span class="k">def</span> <span class="nf">test_add</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="nb">eval</span><span class="p">(</span><span class="s">'1+1'</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">test_sub</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calculator</span><span class="o">.</span><span class="nb">eval</span><span class="p">(</span><span class="s">'1-1'</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+
+</code></pre>
+      </div>
+
+      <p>Now we did not add the <code class="highlighter-rouge">'calculator'</code> fixture to the global list, but specified it in the testcase.
+We could use the <code class="highlighter-rouge">pony_fixtures</code> attribute as well. With <code class="highlighter-rouge">include_fixtures</code>, you can specify adiitional fixtures,
+that will be appended to the global ones.</p>
+
+      <p>Let’s run the test:</p>
+
+      <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>python3 -m ponytest test_calc
+.E..
+<span class="o">======================================================================</span>
+ERROR: test_sub <span class="o">(</span>test_calc.TestCalculator<span class="o">)</span> <span class="o">[</span>reduce add]
+----------------------------------------------------------------------
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"/home/vitalik/projects/ponytest/ponytest/main.py"</span>, line 180, <span class="k">in </span>wrapper
+    _test_func<span class="o">(</span><span class="nb">test</span><span class="o">)</span>
+  File <span class="s2">"/home/vitalik/Documents/test_calc.py"</span>, line 48, <span class="k">in </span>test_sub
+    self.assertEqual<span class="o">(</span>self.calculator.eval<span class="o">(</span><span class="s1">'1-1'</span><span class="o">)</span>, 0<span class="o">)</span>
+  File <span class="s2">"/home/vitalik/Documents/test_calc.py"</span>, line 20, <span class="k">in </span><span class="nb">eval
+    </span>items <span class="o">=</span> <span class="o">[</span>float<span class="o">(</span>i<span class="o">)</span> <span class="k">for </span>i <span class="k">in </span>expr.split<span class="o">(</span><span class="s1">'+'</span><span class="o">)]</span>
+  File <span class="s2">"/home/vitalik/Documents/test_calc.py"</span>, line 20, <span class="k">in</span> &lt;listcomp&gt;
+    items <span class="o">=</span> <span class="o">[</span>float<span class="o">(</span>i<span class="o">)</span> <span class="k">for </span>i <span class="k">in </span>expr.split<span class="o">(</span><span class="s1">'+'</span><span class="o">)]</span>
+ValueError: could not convert string to float: <span class="s1">'1-1'</span>
+----------------------------------------------------------------------
+Ran 4 tests <span class="k">in </span>0.004s
+
+FAILED <span class="o">(</span><span class="nv">errors</span><span class="o">=</span>1<span class="o">)</span>
+</code></pre>
+      </div>
+
+      <p>As you can see, 4 tests were run, 1 of which failed with the “reduce add” provider.</p>
+
+      <p>Read more in the <a href="/docs">docs</a> or go to <a href="https://github.com/abetkin/ponytest">repository</a>.</p>
 
     </article>
 </div></section>
 
-<section class="content"><div class="width">
-<article>
-
-      <h2>Use Flow<a id="use-flow" class="hashref"></a><a href="#use-flow" class="hash">#</a></h2>
-
-      <p>Start out with our <a href="/docs/getting-started.html">Getting Started</a> guide and try Flow
-for yourself.</p>
-
-      <p>Flow also powers advanced features for editors, including <a href="https://github.com/flowtype/vim-flow">Vim</a>,
-<a href="https://github.com/facebook/flow/blob/master/flow-types.el">Emacs</a>, and <a href="http://nuclide.io/docs/languages/flow/">Nuclide</a>.</p>
-
-      <header class="hero"><div class="width">
-  <div class="buttons-unit">
-    <a href="/docs/getting-started.html#_" class="button">Get Started</a>
-  </div>
-  <div>
-    <a href="/docs/quick-reference.html" class="sub-header-link">Quick Reference</a>
-    <a href="https://github.com/facebook/flow/releases/latest" class="sub-header-link">Download</a>
-  </div>
-</div></header>
-
-    </article>
-</div></section>
-
-<footer><div class="width">
-  <div class="oss_logo">
-    <a href="https://code.facebook.com/projects/">
-      <img src="/assets/oss_logo.png" alt="Facebook Open Source" />
-    </a>
-  </div>
-  <div class="contributing">
-
-      <p>Flow is <a href="https://github.com/facebook/flow">on GitHub</a>. It is used heavily within Facebook and
-developed in the open. We hope it will be useful for other JavaScript projects, so please try it out,
-join the community, and give us feedback!</p>
-
-    </div>
-  <div class="copyright">
-    &copy; Copyright 2014 - 2016, Facebook Inc.
-  </div>
-</div></footer>
 <script>require(['inlineErrors'], function(inlineErrors) {
-  inlineErrors.highlight([{"id":"E1","messages":[{"id":"M1001","description":"string","context":"  return x * 10;","source":"-","start":{"line":62,"column":10,"offset":1235},"end":{"line":62,"column":10,"offset":1236}},{"id":"M1002","description":"This type is incompatible with","context":null},{"id":"M1003","description":"number","context":"  return x * 10;","source":"-","start":{"line":62,"column":10,"offset":1235},"end":{"line":62,"column":15,"offset":1241}}],"operation":{"description":"function call\n","context":"foo('Hello, world!');","source":"-","start":{"line":64,"column":1,"offset":1245},"end":{"line":64,"column":20,"offset":1265}}},{"id":"E2","messages":[{"id":"M2001","description":"number","context":"  return x.length;","source":"-","start":{"line":73,"column":10,"offset":1403},"end":{"line":73,"column":17,"offset":1411}},{"id":"M2002","description":"This type is incompatible with the expected return type of","context":null},{"id":"M2003","description":"string","context":"function bar(x): string {","source":"-","start":{"line":72,"column":18,"offset":1385},"end":{"line":72,"column":23,"offset":1391}}],"operation":null}]);
+  inlineErrors.highlight([]);
 });</script>
 
+
+<footer><div class='width'>
+    Built by <a href="https://ponyorm.com/">Pony ORM</a>
+</div></footer>
 
 <script>require(['default']);</script>
 </body>

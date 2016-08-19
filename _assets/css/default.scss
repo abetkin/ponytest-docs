@@ -264,13 +264,18 @@ header.hero .width {
 }
 
 header.hero.main {
-  background: #363d42;
-  color: #ebebed;
+  background: #ebebed;
+  color: #363d42;
   padding: 40px 0;
 }
 
+header.topbar a.logo-color {
+  font-weight: bold;
+  font-style: italic;
+}
+
 header.hero h1 {
-    font-size: 4em;
+    font-size: 3.5em;
     font-weight: normal;
     color: #bb2910;
     margin: 0;

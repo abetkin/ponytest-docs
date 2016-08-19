@@ -9,7 +9,7 @@
       <item>
         <title>Windows Support is Here!</title>
         
-        <dc:creator>Gabe Levi</dc:creator>
+        <dc:creator></dc:creator>
         <description>
           
             &lt;p&gt;We are excited to announce that Flow is now officially available on 64-bit Windows! Starting with &lt;a href=&quot;https://github.com/facebook/flow/releases/tag/v0.30.0&quot;&gt;Flow v0.30.0&lt;/a&gt;, we will publish a Windows binary with each release. You can download the Windows binary in a .zip file directly from the &lt;a href=&quot;https://github.com/facebook/flow/releases&quot;&gt;GitHub releases page&lt;/a&gt; or install it using the &lt;a href=&quot;https://www.npmjs.com/package/flow-bin&quot;&gt;flow-bin npm package&lt;/a&gt;. Try it out and &lt;a href=&quot;https://github.com/facebook/flow/issues&quot;&gt;report any issues&lt;/a&gt; you come across!&lt;/p&gt;
@@ -29,7 +29,7 @@
       <item>
         <title>New Implementation of Unions and Intersections</title>
         
-        <dc:creator>Sam Goldman</dc:creator>
+        <dc:creator></dc:creator>
         <description>
           
             &lt;h2&gt;Summary&lt;a id=&quot;summary&quot; class=&quot;hashref&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#summary&quot; class=&quot;hash&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
@@ -47,7 +47,7 @@
       <item>
         <title>Version 0.21.0</title>
         
-        <dc:creator>Gabe Levi</dc:creator>
+        <dc:creator></dc:creator>
         <description>
           
             &lt;p&gt;Yesterday we deployed Flow v0.21.0! As always, we’ve listed out the most interesting changes in the &lt;a href=&quot;https://github.com/facebook/flow/blob/master/Changelog.md#v0210&quot;&gt;Changelog&lt;/a&gt;. However, since I’m on a plane and can’t sleep, I thought it might be fun to dive into a couple of the changes! Hope this blog post turns out interesting and legible!&lt;/p&gt;
@@ -74,7 +74,7 @@
       <item>
         <title>Version 0.19.0</title>
         
-        <dc:creator>Gabe Levi</dc:creator>
+        <dc:creator></dc:creator>
         <description>
           
             &lt;p&gt;Flow v0.19.0 was deployed today! It has a ton of changes, which the &lt;a href=&quot;https://github.com/facebook/flow/blob/master/Changelog.md#v0190&quot;&gt;Changelog&lt;/a&gt; summarizes. The Changelog can be a little concise, though, so here are some longer explanations for some of the changes. Hope this helps!&lt;/p&gt;
@@ -100,7 +100,7 @@
       <item>
         <title>Typing Generators with Flow</title>
         
-        <dc:creator>Sam Goldman</dc:creator>
+        <dc:creator></dc:creator>
         <description>
           
             &lt;p&gt;Flow 0.14.0 included support for generator functions. Generator functions provide a unique ability to JavaScript programs: the abilty to suspend and resume execution. This kind of control paves the way for async/await, an &lt;a href=&quot;https://github.com/tc39/ecmascript-asyncawait&quot;&gt;upcoming feature&lt;/a&gt; already supported by Flow.&lt;/p&gt;
@@ -116,7 +116,7 @@
       <item>
         <title>Version 0.17.0</title>
         
-        <dc:creator>Gabe Levi</dc:creator>
+        <dc:creator></dc:creator>
         <description>
           
             &lt;p&gt;Today we released Flow v0.17.0! The first thing you may notice is that we changed the way we display errors at the command line. The new errors look like this:&lt;/p&gt;
@@ -137,7 +137,7 @@
       <item>
         <title>Version 0.16.0</title>
         
-        <dc:creator>Jeff Morrison</dc:creator>
+        <dc:creator></dc:creator>
         <description>
           
             &lt;p&gt;On Friday we released Flow v0.16.0! We had some major perf improvements that we wanted to get into a release, plus let/const support was ready (thanks again &lt;a href=&quot;https://github.com/samwgoldman&quot;&gt;@samwgoldman&lt;/a&gt;)!&lt;/p&gt;
@@ -154,7 +154,7 @@
       <item>
         <title>Version 0.15.0</title>
         
-        <dc:creator>Gabe Levi</dc:creator>
+        <dc:creator></dc:creator>
         <description>
           
             &lt;p&gt;Today we released Flow v0.15.0! A lot has changed in the last month and we’re excited to get the hard work of all our contributors in front of people! Big thanks to everyone who contributed to this release!&lt;/p&gt;
@@ -171,7 +171,7 @@
       <item>
         <title>Version 0.14.0</title>
         
-        <dc:creator>Gabe Levi</dc:creator>
+        <dc:creator></dc:creator>
         <description>
           
             &lt;p&gt;It has come to our attention that not everyone obsessively checks GitHub for Flow releases. This came as a surprise, but we would like to support these users too. Therefore, we will start announcing each Flow release on the blog, starting with this release.&lt;/p&gt;
@@ -188,7 +188,7 @@
       <item>
         <title>Announcing Disjoint Unions</title>
         
-        <dc:creator>Avik Chaudhuri</dc:creator>
+        <dc:creator></dc:creator>
         <description>
           
             &lt;p&gt;Sometimes programs need to deal with different kinds of data all at once, where the shape of the data can be different based on what kind of data the code is looking at. This kind of programming is so common in functional programming languages that almost all such languages come with a way of:&lt;/p&gt;
